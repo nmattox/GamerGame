@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<All>
+
+<task>
+<question>Which Game is it?</question>
+<option>Max Payne</option>
+<option>Hitman</option>
+<option>Bruce Wayne</option>
+</task>
+
+<task>
+<question>Which Game is it?</question>
+<option>Fifa 2012</option>
+<option>Soccer Manager</option>
+<option>Crazy Fifa</option>
+</task>
+
+
+<task>
+<question>Which Game is it?</question>
+<option>Grand Theft Auto 3</option>
+<option>Grand Theft Auto Vice City</option>
+<option>Grand Theft Auto San Andreas</option>
+</task>
+
+</All>

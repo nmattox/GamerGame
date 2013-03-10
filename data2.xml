@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<All>
+
+<task>
+<question>What character is this?</question>
+<option correct="true">Mario</option>
+<option>Castle of Magic</option>
+<option>Giana Sisters</option>
+<img>1.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option>Kings Quest</option>
+<option>Adventure</option>
+<option>The Black Cauldron</option>
+<img>2.jpg</img>
+</task>
+
+
+<task>
+<question>Which Game is it?</question>
+<option>GemCraft</option>
+<option>Desktop Castle Defense</option>
+<option>Vector Defense</option>
+<img>3.jpg</img>
+</task>
+
+</All>
