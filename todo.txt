@@ -1,0 +1,8 @@
+GAMER GAME TODO
+
+
+FURUTE:
+1) figure out why it doesn't load in facebook canvas for other users locally
+2) leaderboard running
+3) screen locking - make sure you can only push correct buttons on correct times
+4) integrate graphics

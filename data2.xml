@@ -3,28 +3,166 @@
 <All>
 
 <task>
-<question>What character is this?</question>
-<option correct="true">Mario</option>
-<option>Castle of Magic</option>
-<option>Giana Sisters</option>
+<question>Which Game is it?</question>
+<option correct="true">Spacewar</option>
+<option>Spicewar</option>
+<option>Spamwar</option>
 <img>1.jpg</img>
-</task>
-
-<task>
-<question>Which game is it?</question>
-<option>Kings Quest</option>
-<option>Adventure</option>
-<option>The Black Cauldron</option>
-<img>2.jpg</img>
 </task>
 
 
 <task>
 <question>Which Game is it?</question>
-<option>GemCraft</option>
-<option>Desktop Castle Defense</option>
-<option>Vector Defense</option>
+<option>Ping</option>
+<option>PingPong</option>
+<option correct="true">Pacman</option>
+<img>2.jpg</img>
+</task>
+
+<task>
+<question>Which Game is it?</question>
+<option>The Sims 3 Supernatural</option>
+<option>The Sims 3 Pets</option>
+<option correct="true">The Sims 3 Houses</option>
 <img>3.jpg</img>
+</task>
+
+<task>
+<question>Which Game is it?</question>
+<option correct="true">Mule</option>
+<option>The Donkey</option>
+<option>Shout!!</option>
+<img>4.jpg</img>
+</task>
+
+<task>
+<question>Which Game is it?</question>
+<option>Cow a Boom</option>
+<option  correct="true">Katamari Damaci</option>
+<option>Cash Cow</option>
+<img>5.jpg</img>
+</task>
+
+<task>
+<question>Which Game is it?</question>
+<option>Dead Space</option>
+<option>River</option>
+<option  correct="true">Flow</option>
+<img>6.jpg</img>
+</task>
+
+<task>
+<question>Which Game is it?</question>
+<option>Eco</option>
+<option>Warriors</option>
+<option  correct="true">Ico</option>
+<img>7.jpg</img>
+</task>
+
+<task>
+<question>Which character is it?</question>
+
+<option  correct="true">Mario</option>
+<option>Castle of Magic</option>
+<option>Giana Sisters</option>
+<img>8.jpg</img>
+</task>
+
+<task>
+<question>Which character is it?</question>
+<option  correct="true">Donkey Kong</option>
+<option>King of Donkeys</option>
+<option>The Donkey King</option>
+<img>9.jpg</img>
+</task>
+
+
+<task>
+<question>Which game is it?</question>
+<option>Virtua Fighter</option>
+<option correct="true">Zelda Ocarina in Time</option>
+<option>Mortal Combat</option>
+<img>10.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option correct="true">Prince of Persia</option>
+<option>Black Belt</option>
+<option>Blandia-Allumer</option>
+<img>11.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option  correct="true">Adventure</option>
+<option>Kings Quest</option>
+<option>The Black Cauldron</option>
+<img>12.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option>Made Man</option>
+<option>Mafia</option>
+<option  correct="true">Myst</option>
+<img>13.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option  correct="true">World of Warcraft</option>
+<option>World of Warships</option>
+<option>War Front</option>
+<img>14.jpg</img>
+</task>
+
+<task>
+<question>Which version of game is it?</question>
+<option>Dune 1</option>
+<option  correct="true">Dune 2</option>
+<option>Dune 3</option>
+<img>15.jpg</img>
+</task>
+
+<task>
+<question>Which famous gaming company published Tetris?</question>
+<option>Electronic Arts</option>
+<option>Fox Interactive</option>
+<option  correct="true">None of These</option>
+<img>16.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option  correct="true">Oregon Trail</option>
+<option>Super Trail</option>
+<option>Moto X Madness</option>
+<img>17.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option>Warcraft</option>
+<option  correct="true">Star Craft</option>
+<option>Universe of War</option>
+<img>18.jpg</img>
+</task>
+ 
+<task>
+<question>Which game is it?</question>
+<option>Call of Duty</option>
+<option>Bio Shock</option>
+<option  correct="true">Halo 3</option>
+<img>19.jpg</img>
+</task>
+
+<task>
+<question>Which game is it?</question>
+<option>Splinter Cell</option>
+<option  correct="true">Metal Gear Solid</option>
+<option>Ghost Recon</option>
+<img>20.jpg</img>
 </task>
 
 </All>

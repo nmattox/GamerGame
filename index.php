@@ -4,6 +4,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>The Gamer Game</title>
 
+<?php
+    require 'server/fb-php-sdk/facebook.php';
+
+    $app_id = '493343430730104';
+    $app_secret = '32087faf725e5487afd4a733df0dfbfa';
+    $app_namespace = 'thegamergame';
+    $app_url = 'https://apps.facebook.com/' . $app_namespace . '/';
+    $scope = 'email,publish_actions';
+
+    // Init the Facebook SDK
+    $facebook = new Facebook(array(
+         'appId'  => $app_id,
+         'secret' => $app_secret,
+));
+
+// Get the current user
+$user = $facebook->getUser();
+
+// If the user has not installed the app, 	 them to the Login Dialog
+if (!$user) {
+        $loginUrl = $facebook->getLoginUrl(array(
+        'scope' => $scope,
+        'redirect_uri' => $app_url,
+        ));
+
+        print('<script> top.location.href=\'' . $loginUrl . '\'</script>');
+}
+?>
+
 <link rel="stylesheet" type="text/css" href="mainStyles.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script src="script.js"></script>
@@ -35,14 +64,16 @@
 				var Questions = new Array;
 				var Options = new Array;
 				var Images = new Array;
-
+				var CorrectAnswers = new Array;
+				window.finalScore = 0;
 
         <?php
 
 
 					 
 
-					$datastr = "data".strval($_GET["q"]).".xml";
+					//$datastr = "data".strval($_GET["q"]).".xml";
+					$datastr = "data2.xml";
 					$xml = simplexml_load_file($datastr);
 					
 					$counter= count($xml);
@@ -54,6 +85,19 @@
 					echo "Options[".$i."]=['".$xml-> task[$i]->option[0] ."','";
 					echo $xml-> task[$i]->option[1] ."','";
 					echo $xml-> task[$i]->option[2]."'];";
+					$attr = 'correct';
+					if($xml->task[$i]->option[0]->attributes()->$attr == 'true')
+					{
+						echo "CorrectAnswers[".$i."]=1";
+					}
+					if($xml->task[$i]->option[1]->attributes()->$attr == 'true')
+					{
+						echo "CorrectAnswers[".$i."]=2";
+					}
+					if($xml->task[$i]->option[2]->attributes()->$attr == 'true')
+					{
+						echo "CorrectAnswers[".$i."]=3";
+					}
 					echo "\n";
 					echo "Images[".$i."]='".$xml->task[$i]->img."';";
 					}
@@ -74,9 +118,48 @@
 					Question=Questions[qnumber];
 					CorrectAnswer=1+Math.floor(Math.random()*3);
 
-					if(CorrectAnswer==1){Option1=Options[qnumber][0];Option2=Options[qnumber][1];Option3=Options[qnumber][2];}
-					if(CorrectAnswer==2){Option1=Options[qnumber][2];Option2=Options[qnumber][0];Option3=Options[qnumber][1];}
-					if(CorrectAnswer==3){Option1=Options[qnumber][1];Option2=Options[qnumber][2];Option3=Options[qnumber][0];}
+					if(CorrectAnswer==1)
+					{
+						Option1=Options[qnumber][0];
+						Option2=Options[qnumber][1];
+						Option3=Options[qnumber][2];
+					}
+					if(CorrectAnswer==2)
+					{
+						if(CorrectAnswers[qnumber] == 1)
+						{
+							CorrectAnswers[qnumber] = 2;
+						}
+						else if(CorrectAnswers[qnumber] == 2)
+						{
+							CorrectAnswers[qnumber] = 3;
+						}
+						else if(CorrectAnswers[qnumber] == 3)
+						{
+							CorrectAnswers[qnumber] = 1;
+						}
+						Option1=Options[qnumber][2];
+						Option2=Options[qnumber][0];
+						Option3=Options[qnumber][1];
+					}
+					if(CorrectAnswer==3)
+					{
+						if(CorrectAnswers[qnumber] == 1)
+						{
+							CorrectAnswers[qnumber] = 3;
+						}
+						else if(CorrectAnswers[qnumber] == 2)
+						{
+							CorrectAnswers[qnumber] = 1;
+						}
+						else if(CorrectAnswers[qnumber] == 3)
+						{
+							CorrectAnswers[qnumber] = 2;
+						}
+						Option1=Options[qnumber][1];
+						Option2=Options[qnumber][2];
+						Option3=Options[qnumber][0];
+					}
 
 					context.textBaseline = "middle";
 					context.font = "24pt Calibri,Arial";
@@ -121,9 +204,10 @@
 
 
 		GetFeedback = function(a){
-
+		console.log(a);
+		console.log(CorrectAnswers[qnumber]);
 		// determines if answer is correct or not 
-		  if(a==CorrectAnswer){
+		  if(a==CorrectAnswers[qnumber]){
 		  	context.drawImage(quizbg, 0,400,75,70,480,110+(90*(a-1)),75,70);
 			rightanswers++;
 			//drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
@@ -174,6 +258,7 @@
 		context.font = "16pt Calibri,Arial";
 		context.fillText("Correct answers: "+String(rightanswers),20,200);
 		context.fillText("Wrong answers: "+String(wronganswers),20,240);
+		window.finalScore = rightanswers;
 		}
 		
 		
@@ -184,13 +269,35 @@
 </head>
 
 <body>
-
+      <div id="fb-root"></div>
+      <script src="//connect.facebook.net/en_US/all.js"></script>
+	  
+<div id="topBar"></div>
+<br clear="all" />	  
 <div id="slideshow">
 
 	<ul class="slides">
-    	<li><img src="img/photos/8.jpg" width="620" height="320" alt="1" /></li>
-        <li><img src="img/photos/12.jpg" width="620" height="320" alt="2" /></li>
-        <li><img src="img/photos/25.jpg" width="620" height="320" alt="3" /></li>
+    	<li><img src="img/photos/1.jpg" width="620" height="320" alt="1" /></li>
+        <li><img src="img/photos/2.jpg" width="620" height="320" alt="2" /></li>
+        <li><img src="img/photos/3.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/4.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/5.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/6.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/7.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/8.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/9.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/10.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/11.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/12.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/13.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/14.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/15.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/16.png" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/17.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/18.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/19.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/20.jpg" width="620" height="320" alt="3" /></li>
+		<li><img src="img/photos/game_over.PNG" width="620" height="320" alt="3" /></li>
     </ul>
     <span class="arrow previous"></span>
     <span class="arrow next"></span>
@@ -199,6 +306,22 @@
 <div id="ccontainer">
 	<canvas id="myCanvas" width="550" height="400"></canvas>
 </div>
-    
+	  
+		<script>
+    var appId = '<?php echo $facebook->getAppID() ?>';
+    // Initialize the JS SDK
+    FB.init({
+        appId: appId,
+        cookie: true,
+		frictionlessRequests: true,
+    });
+
+    FB.getLoginStatus(function(response) {
+        uid = response.authResponse.userID ? response.authResponse.userID : null;
+    });
+</script>
+
+<script src="scripts/ggui.js"></script>
+	
 </body>
 </html>
