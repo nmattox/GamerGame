@@ -1,8 +1,7 @@
 $(window).load(function(){
-	
+
 	// We are listening to the window.load event, so we can be sure
 	// that the images in the slideshow are loaded properly.
-
 
 	// Testing wether the current browser supports the canvas element:
 	var supportCanvas = 'getContext' in document.createElement('canvas');
@@ -35,29 +34,26 @@ $(window).load(function(){
 		
 		window.console && window.console.timeEnd && console.timeEnd('Generated In');
 		
+		
 		$('#slideshow .arrow').click(function(){
 			var li			= slides.eq(current),
 				canvas		= li.find('canvas'),
 				nextIndex	= 0;
-
 			// Depending on whether this is the next or previous
 			// arrow, calculate the index of the next slide accordingly.
 			
 			// next slide arrow is clicked
-			if($(this).hasClass('next')){
-				if(!window.QuizFinished)
-				{
-					window.ResetQ();
-					nextIndex = current >= slides.length-1 ? 0 : current+1;
-				}
-			}
-			// previous slide arrow is clicked
-			else {
-				if(!window.QuizFinished)
-				{
-					window.ResetQBack();
-					nextIndex = current <= 0 ? slides.length-1 : current-1;
-				}
+					if($(this).hasClass('next'))
+					{
+
+							window.ResetQ();
+							nextIndex = current >= slides.length-1 ? 0 : current+1;
+							console.log('here');
+						
+					}
+					// previous slide arrow is clicked - no longer necessary 
+					
+				
 			}
 
 			var next = slides.eq(nextIndex);

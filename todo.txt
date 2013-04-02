@@ -6,3 +6,16 @@ FURUTE:
 2) leaderboard running
 3) screen locking - make sure you can only push correct buttons on correct times
 4) integrate graphics
+
+
+BADGE CATEGORIES:
+1) Master
+2) sports
+3) shooters
+4) classics
+5) characters
+6) strategy
+
+COMMERCE:
+1) complete game = 5 coines
+2) remove incorrect answer = 3 coins 	

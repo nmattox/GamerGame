@@ -66,6 +66,8 @@ if (!$user) {
 				var Images = new Array;
 				var CorrectAnswers = new Array;
 				window.finalScore = 0;
+				window.inGame = true;
+				var questionAnswered = false;
 
         <?php
 
@@ -206,6 +208,8 @@ if (!$user) {
 		GetFeedback = function(a){
 		console.log(a);
 		console.log(CorrectAnswers[qnumber]);
+		if(!questionAnswered)
+		{
 		// determines if answer is correct or not 
 		  if(a==CorrectAnswers[qnumber]){
 		  	context.drawImage(quizbg, 0,400,75,70,480,110+(90*(a-1)),75,70);
@@ -216,6 +220,8 @@ if (!$user) {
 		    context.drawImage(quizbg, 75,400,75,70,480,110+(90*(a-1)),75,70);
 			wronganswers++;
 		  }
+		  questionAnswered = true;
+		 }
 		  // click next to continue 
 		  //lock=true;
 		  //context.font = "14pt Calibri,Arial";
@@ -224,6 +230,11 @@ if (!$user) {
 
 
 		ResetQ= function(){
+			if(!questionAnswered)
+			{
+				wronganswers++;
+			}
+			questionAnswered = false;
 			lock=false;
 			context.clearRect(0,0,550,400);
 			qnumber++;
@@ -236,6 +247,7 @@ if (!$user) {
 
 		ResetQBack = function()
 		{
+			/*
 			if(qnumber != 0)
 			{
 				lock=false;
@@ -247,6 +259,7 @@ if (!$user) {
 					SetQuestions();
 				}
 			}
+			*/
 		}
 
 		EndQuiz=function(){
@@ -259,6 +272,8 @@ if (!$user) {
 		context.fillText("Correct answers: "+String(rightanswers),20,200);
 		context.fillText("Wrong answers: "+String(wronganswers),20,240);
 		window.finalScore = rightanswers;
+		window.inGame = false;
+		console.log('end game, inGame boolean = '+window.inGame);
 		}
 		
 		
@@ -299,7 +314,6 @@ if (!$user) {
 		<li><img src="img/photos/20.jpg" width="620" height="320" alt="3" /></li>
 		<li><img src="img/photos/game_over.PNG" width="620" height="320" alt="3" /></li>
     </ul>
-    <span class="arrow previous"></span>
     <span class="arrow next"></span>
 </div>
 
